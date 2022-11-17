@@ -2,6 +2,19 @@
 
 @section('content')
 <br><br>
+@if ($message = Session::get('success'))
+    @php
+        //session()->get('success');
+    @endphp
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+@if ($message = session()->get('error'))
+    <div class="alert alert-danger">
+        <p>{{ $message }}</p>
+    </div>
+@endif
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -28,7 +41,7 @@
             <td>
                 <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">Show</a>
                 <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
-                <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                <form action="{{ route('products.destroy', $product->id) }}" method="POST" onClick="return confirm('Esta seguro de eliminar?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Delete</button>
