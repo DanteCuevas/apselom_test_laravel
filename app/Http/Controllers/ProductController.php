@@ -14,9 +14,22 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        /* $products = Product::orderBy('id', 'DESC');
+
+        if ($request->name !== null)
+            $products = $products->where('name', 'LIKE', '%'.$request->name.'');
+        if ($request->id !== null)
+            $products = $products->where('id', $request->id);
+        
+        $products = $products->paginate(10); */
+
+        $products = Product::orderBy('id', 'DESC')
+            ->id($request->id)
+            ->name($request->name)
+            ->paginate(10);
+
         return view('products.index', compact('products'));
     }
 
