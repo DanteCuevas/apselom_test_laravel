@@ -49,6 +49,7 @@
         <tr>
             <th>Nro</th>
             <th>Id</th>
+            <th>Code</th>
             <th>Name</th>
             <th>Description</th>
             <th>Status</th>
@@ -60,6 +61,7 @@
         <tr>
             <td>{{ ($key+1) }}</td>
             <td>{{ $product->id }}</td>
+            <td>{{ $product->code }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->description }}</td>
             <td>{{ $status = $product->status ? 'Active' : 'Inactive' }}</td>

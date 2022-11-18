@@ -58,6 +58,9 @@ class ProductController extends Controller
             'quantity' => 'required | integer'
         ]); */
 
+        /* $input = $request->all();
+        $input['code'] = str_pad($input['code'], 6, "0", STR_PAD_LEFT); */
+
         Product::create($request->all());
 
         return redirect()->route('products.index')

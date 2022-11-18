@@ -28,6 +28,12 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Code:</strong>
+                <input type="text" name="code" class="form-control" placeholder="Code" value="{{ $product->code }}">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Name:</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name" value="{{ $product->name }}">
             </div>

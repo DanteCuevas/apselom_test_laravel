@@ -15,7 +15,8 @@ class Product extends Model
         'name',
         'description',
         'status',
-        'quantity'
+        'quantity',
+        'code'
     ];
 
     public function scopeName($query, $value)
@@ -39,6 +40,11 @@ class Product extends Model
     public function getStatusFormatSaleAttribute ()
     {
         return $this->status ? 'On' : 'Off';
+    }
+
+    public function setCodeAttribute ($value)
+    {
+        $this->attributes['code'] = str_pad($value, 6, "0", STR_PAD_LEFT);
     }
 
 }
