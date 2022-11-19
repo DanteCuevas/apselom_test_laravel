@@ -55,6 +55,7 @@
             <th>Status</th>
             <th>Status Accessor</th>
             <th>Status Accessor Sale</th>
+            <th>Category</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($products as $key => $product)
@@ -67,6 +68,7 @@
             <td>{{ $status = $product->status ? 'Active' : 'Inactive' }}</td>
             <td>{{ $product->statusFormat }}</td>
             <td>{{ $product->statusFormatSale }}</td>
+            <td>{{ $product->category ? $product->category->name : '' }}</td>
             <td>
                 <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">Show</a>
                 <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>

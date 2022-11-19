@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -16,8 +17,14 @@ class Product extends Model
         'description',
         'status',
         'quantity',
-        'code'
+        'code',
+        'category_id'
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
     public function scopeName($query, $value)
     {
@@ -42,6 +49,9 @@ class Product extends Model
         return $this->status ? 'On' : 'Off';
     }
 
+    /* 
+     * Este apartado es para la declaracion de mutators
+     */
     public function setCodeAttribute ($value)
     {
         $this->attributes['code'] = str_pad($value, 6, "0", STR_PAD_LEFT);

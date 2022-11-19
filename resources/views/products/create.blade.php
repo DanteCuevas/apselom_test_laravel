@@ -55,6 +55,12 @@
                 <input type="text" name="quantity" class="form-control" placeholder="Quantity">
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Category:</strong>
+                <input type="text" name="category_id" class="form-control" placeholder="Category id">
+            </div>
+        </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
