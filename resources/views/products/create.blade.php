@@ -46,7 +46,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Status:</strong>
-                <input type="text" name="status" class="form-control" placeholder="Status">
+                <!--input type="text" name="status" class="form-control" placeholder="Status"-->
+                <select name="status" class="form-control">
+                    <option value="">Eliga una opcion</option>
+                    <option value="0">Activo</option>
+                    <option value="1">Inactivo</option>
+                </select>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -58,7 +63,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Category:</strong>
-                <input type="text" name="category_id" class="form-control" placeholder="Category id">
+                <!--input type="text" name="category_id" class="form-control" placeholder="Category id"-->
+                <select name="category_id" class="form-control">
+                    @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         
