@@ -27,8 +27,10 @@ class ProductController extends Controller
         $products = $products->paginate(10); */
 
         $products = Product::orderBy('id', 'DESC')
+            ->with('category')
             ->id($request->id)
             ->name($request->name)
+            ->categoryName($request->category_name)
             ->paginate(10);
 
         return view('products.index', compact('products'));

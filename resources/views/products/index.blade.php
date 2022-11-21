@@ -27,6 +27,10 @@
                 <strong>Filtro por Nombre</strong>
                 <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
+            <div class="form-group">
+                <strong>Filtro por Categoria Nombre</strong>
+                <input type="text" name="category_name" class="form-control" placeholder="Category">
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Filtrar</button>
             </div>
@@ -68,7 +72,7 @@
             <td>{{ $status = $product->status ? 'Active' : 'Inactive' }}</td>
             <td>{{ $product->statusFormat }}</td>
             <td>{{ $product->statusFormatSale }}</td>
-            <td>{{ $product->category ? $product->category->name : '' }}</td>
+            <td>{{ $product->category_name }}</td>
             <td>
                 <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">Show</a>
                 <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>

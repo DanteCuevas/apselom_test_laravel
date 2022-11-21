@@ -15,4 +15,10 @@ class Category extends Model
         'name',
         'status'
     ];
+
+    public function scopeFilterName($query, $value)
+    {
+        if ($value)
+            return $query->where('name', 'LIKE', '%'.$value.'%');
+    }
 }

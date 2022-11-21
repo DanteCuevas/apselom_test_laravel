@@ -29,7 +29,7 @@ class Product extends Model
     public function scopeName($query, $value)
     {
         if ($value)
-            return $query->where('name', 'LIKE', '%'.$value.'');
+            return $query->where('name', 'LIKE', '%'.$value.'%');
     }
 
     public function scopeId($query, $value)
@@ -37,6 +37,19 @@ class Product extends Model
         return $query->when($value, function ($query) use ($value) {
             $query->where('id', $value);
         });
+    }
+
+    public function scopeCategoryName($query, $value)
+    {
+        return $query->when($value, function ($query) use ($value) {
+            $query->whereHas('category', function ($query) use ($value) {
+                $query->filterName($value);
+            });
+        });
+        /* if ($value)
+            return  $query->whereHas('category', function ($query) use ($value) {
+                $query->where('name', 'LIKE', '%'.$value.'%');
+            }); */
     }
 
     public function getStatusFormatAttribute ()
@@ -47,6 +60,11 @@ class Product extends Model
     public function getStatusFormatSaleAttribute ()
     {
         return $this->status ? 'On' : 'Off';
+    }
+
+    public function getCategoryNameAttribute ()
+    {
+        return $this->category ? $this->category->name : '';
     }
 
     /* 
