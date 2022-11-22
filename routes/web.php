@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::get('/', function () {
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 
 Route::resource('products', ProductController::class);
+
+Route::get('/categories/json', [CategoryController::class, 'indexJson'])->name('categories.indexJson');

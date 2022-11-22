@@ -8,7 +8,7 @@
             <h2>Add New Product</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+            <a class="btn btn-primary" id="btn-back" href="{{ route('products.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -28,13 +28,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Code:</strong>
-                <input type="text" name="code" class="form-control" placeholder="Code">
+                <input type="text" name="code" class="form-control" placeholder="Code"id="code">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <input type="text" name="name" class="form-control" placeholder="Name" id="name">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -71,11 +71,68 @@
                 </select>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Category PLUCK:</strong>
+                <!--input type="text" name="category_id" class="form-control" placeholder="Category id"-->
+                <select name="category_id" class="form-control">
+                    @foreach ($pluckCategories as $key => $value)
+                    <option value="{{$key}}">{{$value}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Category AJAX:</strong>
+                <!--input type="text" name="category_id" class="form-control" placeholder="Category id"-->
+                <select name="category_ajax" id="category_ajax" class="form-control">
+                </select>
+            </div>
+        </div>
         
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 </form>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+    
+    console.log( "ready!" );
+    document.getElementById('name').value = 'test js 2';
+    $('#code').val('code from jquery');
+
+    /* setTimeout( function() {
+        console.log("Delayed for 2 second.");
+        //$('#btn-back').click();
+        $.get( "{{ route('categories.indexJson') }}", function( response ) {
+            console.log( 'categories: ', response );
+        });
+
+    }, "5000"); */
+
+    $.get( "{{ route('categories.indexJson') }}", function( response ) {
+        console.log( 'categories: ', response );
+        // Its good but not efficient
+        /* $.each(response.data.categories, function(key, value) {   
+            console.log(value);
+            $option = $("<option></option>").attr("value", key).text(value)
+            $('#category_ajax').append($option);
+        }); */
+
+        // Its BETTER WAY
+        options = '';
+        $.each(response.data.categories, function(key, value) {   
+            options += '<option value="'+key+'">'+value+'</option>';
+        });
+        //console.log(options);
+        $('#category_ajax').append(options);
+    });
+
+});
+</script>
 
 @endsection
